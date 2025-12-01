@@ -15,6 +15,7 @@ function PublicMainMenu() {
                             alt="My logo"
                             width={160}
                             height={60}
+                            className="w-40 h-auto"
                         />
                     </Link>
                     <ProductSearchForm />
