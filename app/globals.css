@@ -122,6 +122,6 @@
   }
 
   .my-container {
-    @apply max-w-6xl mx-auto;
+    @apply max-w-6xl mx-auto px-4;
   }
 }

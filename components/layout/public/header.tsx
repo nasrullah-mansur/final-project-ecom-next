@@ -7,7 +7,7 @@ function PublicHeader() {
         <>
             <div className="bg-primary py-2">
                 <div className="my-container">
-                    <div className="flex justify-between items-center">
+                    <div className="flex flex-col md:flex-row justify-between items-center">
                         <Link className="flex text-white" href={"/"}>
                             <MapPin />
                             Track order
