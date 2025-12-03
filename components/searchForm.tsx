@@ -42,7 +42,7 @@ function ProductSearchForm() {
                 </button>
 
                 {text &&
-                    <div className="absolute top-full left-0 w-full border flex flex-col justify-between">
+                    <div className="absolute z-2 bg-white top-full left-0 w-full border flex flex-col justify-between">
 
 
 
