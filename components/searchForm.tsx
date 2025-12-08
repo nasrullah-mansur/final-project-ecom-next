@@ -30,9 +30,6 @@ function ProductSearchForm() {
 
     }, [text])
 
-    console.log(searchData);
-
-
     return (
         <div className="px-6 flex-1">
             <div className="relative">

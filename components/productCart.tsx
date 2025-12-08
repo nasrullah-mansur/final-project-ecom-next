@@ -11,7 +11,7 @@ function ProductCart() {
 
     return (
         <div className="flex flex-col justify-center items-center relative">
-            <Link href={"/"} onMouseEnter={() => setActive(true)}>
+            <Link href={"/"} onClick={() => setActive(true)}>
                 <span className="absolute -top-1.5 -right-2.5 min-w-4 h-4 text-xs flex justify-center items-center rounded-full bg-primary text-white">9</span>
 
                 <ShoppingCart size={22} />
