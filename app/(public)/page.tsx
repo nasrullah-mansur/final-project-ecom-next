@@ -1,7 +1,9 @@
 import DealOfWeek from "@/components/pages/home/dealOfWeek";
-import PopularCategorySlider from "@/components/pages/home/popularCategorySlider";
+import PopularCategory from "@/components/pages/home/popularCategory";
+import PopularItemSlider from "@/components/pages/home/popularItemSlider";
 import Service from "@/components/pages/home/service";
 import Slider from "@/components/pages/home/slider";
+import OfferCart from "@/components/share/offerCart";
 
 export default function Home() {
 
@@ -10,7 +12,12 @@ export default function Home() {
       <Slider />
       <Service />
       <DealOfWeek />
-      <PopularCategorySlider />
+      <div className="grid lg:grid-cols-3 gap-4 my-container">
+        <OfferCart />
+        <OfferCart />
+        <OfferCart />
+      </div>
+      <PopularCategory />
     </>
   )
 }
