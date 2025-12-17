@@ -2,11 +2,16 @@
 
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ChevronDown, Funnel, Grid2x2, List } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 export default function ProductFilterTop() {
+
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
     const [view, setView] = useState("grid");
 
 
@@ -15,17 +20,38 @@ export default function ProductFilterTop() {
         setView(text);
     }
 
+    const handleFilter = (text: string) => {
+        const params = new URLSearchParams(searchParams.toString());
+        if (text == 'All products') {
+            params.delete('filter');
+        } else {
+            params.set("filter", text);
+        }
+        router.push(`?${params.toString()}`);
+    }
+
+    const handlePriceSort = (text: string) => {
+        const params = new URLSearchParams(searchParams.toString());
+        if (text == "default") {
+            params.delete("price_sort");
+        }
+        else {
+            params.set("price_sort", text);
+        }
+        router.push(`?${params.toString()}`);
+    }
+
     return (
         <div className="my-container pt-12 pb-6">
             <div className="bg-white p-4 flex">
                 <DropdownMenu>
                     <DropdownMenuTrigger className="border py-2 px-4 flex items-center gap-x-1 text-black/70"><Funnel size={16} /> Quick filter</DropdownMenuTrigger>
                     <DropdownMenuContent>
-                        <DropdownMenuLabel>All products</DropdownMenuLabel>
-                        <DropdownMenuItem>Featured products</DropdownMenuItem>
-                        <DropdownMenuItem>Best sellers</DropdownMenuItem>
-                        <DropdownMenuItem>Top rated</DropdownMenuItem>
-                        <DropdownMenuItem>New Arrival</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleFilter('All products')}>All products</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleFilter('Featured products')}>Featured products</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleFilter('Best sellers')}>Best sellers</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleFilter('Top rated')}>Top rated</DropdownMenuItem>
+                        <DropdownMenuItem onClick={() => handleFilter('New Arrival')}>New Arrival</DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
 
@@ -37,9 +63,9 @@ export default function ProductFilterTop() {
                             <ChevronDown className="mt-1" size={16} />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
-                            <DropdownMenuLabel>All products</DropdownMenuLabel>
-                            <DropdownMenuItem>Low - High price</DropdownMenuItem>
-                            <DropdownMenuItem>High - Low price</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handlePriceSort('default')}>Default</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handlePriceSort('Low - High price')}>Low - High price</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handlePriceSort('High - Low price')}>High - Low price</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
