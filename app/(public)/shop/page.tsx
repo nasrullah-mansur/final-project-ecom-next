@@ -1,3 +1,6 @@
+import CommonFilter from '@/components/pages/shop/commonFilter';
+import FilterByCategory from '@/components/pages/shop/filterByCategory';
+import FilterByPrice from '@/components/pages/shop/filterByPrice';
 import ProductFilterTop from '@/components/pages/shop/productFilterTop';
 import PageBraeadcrumb from '@/components/share/pageBraeadcrumb'
 import { IBraeadcrumb } from '@/type/type';
@@ -23,21 +26,55 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
 
             <div className="grid grid-cols-4 my-container">
                 <div className="col-span-1">
-                    <div className="bg-white p-4">
+                    <div className="bg-white p-4 mb-5">
                         <h3 className="font-semibold text-xl border-b-2 pb-2">Shop Categories</h3>
 
-                        <ul className="mt-4">
-                            <li>
-                                <Link className="flex items-center gap-x-1 hover:text-primary py-1 text-black/70" href={{ pathname: "/shop", query: { category: "Women Clothing" } }}><ChevronRight size={16} className="mt-1" /> Women Clothing</Link>
-                                <Link className="flex items-center gap-x-1 hover:text-primary py-1 text-black/70" href={{ pathname: "/shop", query: { category: "Men Clothing" } }}><ChevronRight size={16} className="mt-1" /> Men Clothing</Link>
-                                <Link className="flex items-center gap-x-1 hover:text-primary py-1 text-black/70" href={{ pathname: "/shop", query: { category: "Electronics" } }}><ChevronRight size={16} className="mt-1" /> Electronics</Link>
-                                <Link className="flex items-center gap-x-1 hover:text-primary py-1 text-black/70" href={{ pathname: "/shop", query: { category: "Vehicles & Accessories" } }}><ChevronRight size={16} className="mt-1" /> Vehicles & Accessories</Link>
-                                <Link className="flex items-center gap-x-1 hover:text-primary py-1 text-black/70" href={{ pathname: "/shop", query: { category: "Beauty & Personal Care" } }}><ChevronRight size={16} className="mt-1" /> Beauty & Personal Care</Link>
-                                <Link className="flex items-center gap-x-1 hover:text-primary py-1 text-black/70" href={{ pathname: "/shop", query: { category: "Sports & Entertainment" } }}><ChevronRight size={16} className="mt-1" /> Sports & Entertainment</Link>
-                                <Link className="flex items-center gap-x-1 hover:text-primary py-1 text-black/70" href={{ pathname: "/shop", query: { category: "Home & Garden" } }}><ChevronRight size={16} className="mt-1" /> Home & Garden</Link>
-                                <Link className="flex items-center gap-x-1 hover:text-primary py-1 text-black/70" href={{ pathname: "/shop", query: { category: "Medicine & Health Care" } }}><ChevronRight size={16} className="mt-1" /> Medicine & Health Care</Link>
-                            </li>
-                        </ul>
+                        <FilterByCategory />
+                    </div>
+
+                    <div className="bg-white p-4 mb-5">
+                        <h3 className="font-semibold text-xl border-b-2 pb-2">Filter by Price</h3>
+
+                        <FilterByPrice />
+                    </div>
+
+                    <div className="bg-white p-4 mb-5">
+                        <h3 className="font-semibold text-xl border-b-2 pb-2">Filter by Color</h3>
+
+                        <CommonFilter
+                            data={["red", "green", "blue"]}
+                            param_text="filter_by_color"
+                        />
+                    </div>
+
+                    <div className="bg-white p-4 mb-5">
+                        <h3 className="font-semibold text-xl border-b-2 pb-2">Filter by Size</h3>
+
+                        <CommonFilter
+                            data={["M", "L", "XL"]}
+                            param_text="filter_by_size"
+                        />
+                    </div>
+
+                    <div className="bg-white p-4 mb-5">
+                        <h3 className="font-semibold text-xl border-b-2 pb-2">Filter by Brand</h3>
+
+                        <CommonFilter
+                            data={[
+                                "Adidas",
+                                "Lavie",
+                                "Skyart",
+                                "Nike",
+                                "Samsung",
+                                "Yamaha",
+                                "H.M",
+                                "Loreal",
+                                "Ascis",
+                            ]}
+                            param_text="filter_by_brand"
+                        />
+
+
                     </div>
                 </div>
 
