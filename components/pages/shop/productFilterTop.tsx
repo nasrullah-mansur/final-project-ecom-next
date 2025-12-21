@@ -3,21 +3,20 @@
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { useProductPreviewStore } from "@/store/productPreview";
 import { ChevronDown, Funnel, Grid2x2, List } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
 
 export default function ProductFilterTop() {
+
+    const { preview, setPreview } = useProductPreviewStore();
 
     const router = useRouter();
     const searchParams = useSearchParams();
 
-    const [view, setView] = useState("grid");
-
-
-    const viewHandler = (text: string) => {
+    const viewHandler = (text: "grid" | "list") => {
         // task for zustand;
-        setView(text);
+        setPreview(text);
     }
 
     const handleFilter = (text: string) => {
@@ -72,10 +71,10 @@ export default function ProductFilterTop() {
 
                 <div className="ml-auto">
                     <ButtonGroup>
-                        <Button onClick={() => viewHandler("grid")} variant={view == "grid" ? "default" : "outline"} className="cursor-pointer">
+                        <Button onClick={() => viewHandler("grid")} variant={preview == "grid" ? "default" : "outline"} className="cursor-pointer">
                             <Grid2x2 />
                         </Button>
-                        <Button onClick={() => viewHandler("list")} variant={view == "list" ? "default" : "outline"} className="cursor-pointer"><List /></Button>
+                        <Button onClick={() => viewHandler("list")} variant={preview == "list" ? "default" : "outline"} className="cursor-pointer"><List /></Button>
                     </ButtonGroup>
                 </div>
 

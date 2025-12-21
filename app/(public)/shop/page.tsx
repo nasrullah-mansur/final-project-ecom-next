@@ -2,15 +2,11 @@ import CommonFilter from '@/components/pages/shop/commonFilter';
 import FilterByCategory from '@/components/pages/shop/filterByCategory';
 import FilterByPrice from '@/components/pages/shop/filterByPrice';
 import ProductFilterTop from '@/components/pages/shop/productFilterTop';
+import ProductList from '@/components/pages/shop/productList';
 import PageBraeadcrumb from '@/components/share/pageBraeadcrumb'
 import { IBraeadcrumb } from '@/type/type';
-import { ChevronRight } from 'lucide-react';
-import Link from 'next/link';
 
-export default async function ShopPage({ searchParams }: { searchParams: Promise<{ filter: string }> }) {
-
-    const { filter } = await searchParams
-
+export default async function ShopPage() {
 
     const pages: IBraeadcrumb[] = [
         {
@@ -24,7 +20,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
             <PageBraeadcrumb pages={pages} />
             <ProductFilterTop />
 
-            <div className="grid grid-cols-4 my-container">
+            <div className="grid grid-cols-4 gap-4 my-container">
                 <div className="col-span-1">
                     <div className="bg-white p-4 mb-5">
                         <h3 className="font-semibold text-xl border-b-2 pb-2">Shop Categories</h3>
@@ -79,7 +75,7 @@ export default async function ShopPage({ searchParams }: { searchParams: Promise
                 </div>
 
                 <div className="col-span-3">
-
+                    <ProductList />
                 </div>
             </div>
         </>
