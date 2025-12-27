@@ -27,21 +27,23 @@ export default function PageBraeadcrumb({ pages }: { pages: IBraeadcrumb[] }) {
                                 )
                             }
 
+
                             return (
-                                <>
-                                    <BreadcrumbItem key={index}>
+                                <React.Fragment key={index}>
+                                    <BreadcrumbItem >
                                         <BreadcrumbLink asChild>
                                             <Link href={page.href ? page.href : "/"}>{page.label}</Link>
                                         </BreadcrumbLink>
 
                                     </BreadcrumbItem>
                                     <BreadcrumbSeparator />
-                                </>
+                                </React.Fragment>
                             )
+
                         })}
 
 
-                        {/* */}
+
                     </BreadcrumbList>
                 </Breadcrumb>
             </div>
