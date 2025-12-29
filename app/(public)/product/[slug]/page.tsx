@@ -1,7 +1,10 @@
 
 import SingleProductDetails from "@/components/pages/product/singleProduct";
 import PageBraeadcrumb from "@/components/share/pageBraeadcrumb";
+import ProductCart from "@/components/share/productCart";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import ImageEffect from "@/components/ui/imageEffect";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { IBraeadcrumb } from "@/type/type";
 
 
@@ -66,6 +69,83 @@ export default function SingleProduct() {
                 </div>
                 <div>
                     <SingleProductDetails product={othersProductData} />
+                </div>
+            </div>
+
+            <div className="my-container">
+                <Tabs defaultValue="account" className="w-full">
+                    <TabsList className="m-auto">
+                        <TabsTrigger
+                            value="account"
+                            className="px-6 py-6 cursor-pointer
+                 data-[state=active]:bg-primary
+                 data-[state=active]:text-primary-foreground"
+                        >
+                            Descriptions
+                        </TabsTrigger>
+
+                        <TabsTrigger
+                            value="password"
+                            className="px-6 py-6 cursor-pointer
+                 data-[state=active]:bg-primary
+                 data-[state=active]:text-primary-foreground"
+                        >
+                            Specifications
+                        </TabsTrigger>
+                    </TabsList>
+
+                    <TabsContent value="account">
+                        <div className="bg-white p-4 rounded-xl mt-4 mb-6">
+                            {long_description}
+                        </div>
+                    </TabsContent>
+
+                    <TabsContent value="password">
+                        <div className="bg-white p-4 rounded-xl mt-4 mb-6">
+                            <div className="grid grid-cols-1">
+                                <div className="grid grid-cols-2 border-t border-b border-l border-r py-2 bg-gray-100 px-2">
+                                    <span className="font-medium block ">Specifications</span>
+                                    <span>Descriptions</span>
+                                </div>
+                                {Object.entries(specifications).map(([key, value]) => (
+                                    <div key={key} className="grid grid-cols-2 border-l border-r border-b py-2 px-2">
+                                        <span className="font-medium block">{key} :</span>
+                                        <span>{value}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </TabsContent>
+                </Tabs>
+
+            </div>
+
+            <div>
+                <div className="my-container">
+                    <div className="flex items-center border-b-2 border-gray-200">
+                        <h2 className="text-2xl font-semibold py-2">
+                            <span className="border-b-2 border-primary -block mb-0.5 py-2">Related Product</span>
+                        </h2>
+
+                    </div>
+                </div>
+                <div className="my-container py-8">
+                    <Carousel
+                        opts={{
+                            align: "start",
+                        }}
+                        className="w-full"
+                    >
+                        <CarouselContent>
+                            {Array.from({ length: 5 }).map((_, index) => (
+                                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
+                                    <ProductCart />
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="absolute top-1/2 -left-4" />
+                        <CarouselNext className="absolute top-1/2 -right-4" />
+                    </Carousel>
                 </div>
             </div>
         </>
